@@ -30,6 +30,7 @@ import getLabOrderablesReducer from './labOrders/settingLabOrderableReducer';
 import fetchOrdersReducer from './fetchOrdersReducer';
 import orderSelectionReducer from './orderSelectionReducer';
 import draftReducer from './draftReducer';
+import fetchLabLocationReducer from './labOrders/fetchLabLocationReducer';
 import contextReducer from "./contextReducer";
 
 export default combineReducers({
@@ -56,5 +57,6 @@ export default combineReducers({
   getLabOrderablesReducer,
   fetchOrdersReducer,
   orderSelectionReducer,
+  fetchLabLocationReducer,
   contextReducer,
 });

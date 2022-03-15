@@ -1,9 +1,8 @@
 import axiosInstance from '../../config';
 
-const fetchLabLocations = (  uri ) => ({
+const fetchLabLocations = () => ({
   type: 'FETCH_LAB_LOCATIONS',
-  payload: axiosInstance
-    .get(uri || `/location?tag=mCSD+Location`),
+  payload: axiosInstance.get(`/location?tag=mCSD+Laboratory&v=custom:(uuid,name)`),
 });
 
-export default fetchLabOrders;
+export default fetchLabLocations;

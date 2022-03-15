@@ -1,26 +1,23 @@
-const initialState = {
-  labOrders: {},
-  errorMessage: '',
-  status: {
-    fetched: false,
-    error: false,
-    loading: false,
-  },
-};
+import {
+  FETCH_LAB_LOCATIONS_SUCCESS,
+  FETCH_LAB_LOCATIONS_FAILURE,
+  FETCH_LAB_LOCATIONS_LOADING,
+} from '../../actions/actionTypes';
+import initialState from '../initialState';
 
-const fetchLabOrderReducer = (state = initialState, action) => {
+const fetchLabLocationReducer = (state = initialState.getLabLocations, action) => {
   switch (action.type) {
-    case 'FETCH_LAB_LOCATIONS_SUCCESS':
+    case FETCH_LAB_LOCATIONS_SUCCESS:
       return {
         ...state,
-        labLocations: action.data,
+        labLocations: action.data.results,
         status: {
           ...state.status,
           fetched: true,
           loading: false,
         },
       };
-    case 'FETCH_LAB_LOCATIONS_FAILURE':
+    case FETCH_LAB_LOCATIONS_FAILURE:
       return {
         ...state,
         errorMessage: action.payload,
@@ -30,7 +27,7 @@ const fetchLabOrderReducer = (state = initialState, action) => {
           loading: false,
         },
       };
-    case 'FETCH_LAB_LOCATIONS_LOADING': {
+    case FETCH_LAB_LOCATIONS_LOADING: {
       return {
         ...state,
         status: {
@@ -44,4 +41,4 @@ const fetchLabOrderReducer = (state = initialState, action) => {
   }
 };
 
-export default fetchLabOrderReducer;
+export default fetchLabLocationReducer;
