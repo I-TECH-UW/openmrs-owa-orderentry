@@ -79,6 +79,12 @@ props = {
     { uuid: 'iuweihiYWGD64', display: 'blood', concept: '12746hfgjff' },
   ],
   getLabOrderables: 'buo434873euhwiqeroq',
+  labLocations: [
+    {
+      uuid: 'uuid',
+      name: 'test Location',
+    },
+  ],
   sessionReducer: {
     locale: 'en',
   },
@@ -125,6 +131,7 @@ describe('Component: LabEntryForm', () => {
       careSettingReducer: { inpatientCareSetting: {} },
       labOrderableReducer: { orderables: [] },
       getLabOrderablesReducer: { getLabOrderables: '' },
+      fetchLabLocationReducer: { labLocations: [] },
       sessionReducer: { session: {} }
     });
     expect(component).toMatchSnapshot();

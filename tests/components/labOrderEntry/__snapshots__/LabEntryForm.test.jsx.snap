@@ -41,6 +41,12 @@ exports[`Component: LabEntryForm should render on initial setup 1`] = `
             "type": "FETCH_LAB_CONCEPTS",
           },
         ],
+        Array [
+          Object {
+            "payload": Promise {},
+            "type": "FETCH_LAB_LOCATIONS",
+          },
+        ],
       ],
     }
   }
@@ -104,6 +110,14 @@ exports[`Component: LabEntryForm should render on initial setup 1`] = `
       "textComponent": "span",
       "timeZone": null,
     }
+  }
+  labLocations={
+    Array [
+      Object {
+        "name": "test Location",
+        "uuid": "uuid",
+      },
+    ]
   }
   labOrders={
     Object {
@@ -220,6 +234,25 @@ exports[`Component: LabEntryForm should render on initial setup 1`] = `
       </FormattedMessage>
     </h5>
     <br />
+    <div
+      className="row"
+    >
+      <div
+        className="col-12"
+      >
+        Lab Location :
+        <select
+          id="example-location-select"
+          name="example-location-select"
+        >
+          <option
+            value="uuid"
+          >
+            test Location
+          </option>
+        </select>
+      </div>
+    </div>
     <div
       className="row"
     >

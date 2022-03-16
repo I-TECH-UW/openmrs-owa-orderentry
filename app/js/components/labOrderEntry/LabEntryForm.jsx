@@ -39,8 +39,8 @@ export class LabEntryForm extends PureComponent {
     conceptsAsPanels: PropTypes.array,
     standAloneTests: PropTypes.array,
     orderables: PropTypes.arrayOf(PropTypes.object).isRequired,
-    getLabOrderables: PropTypes.string.isRequired ,
-    labLocations: PropTypes.arrayOf(PropTypes.object).isRequired
+    getLabOrderables: PropTypes.string.isRequired,
+    labLocations: PropTypes.arrayOf(PropTypes.object),
   };
 
   static defaultProps = {
@@ -53,11 +53,12 @@ export class LabEntryForm extends PureComponent {
     },
     conceptsAsPanels: [],
     standAloneTests: [],
-    labLocations :[
+    labLocations: [
       {
         uuid: '',
         name: '',
-      }]
+      },
+    ],
   };
 
   state = {
@@ -158,7 +159,7 @@ export class LabEntryForm extends PureComponent {
     const {
       orderables,
       getLabOrderables,
-      labLocations ,
+      labLocations,
     } = this.props;
     return (
       <React.Fragment>
@@ -176,9 +177,9 @@ export class LabEntryForm extends PureComponent {
               <div className="col-12">
                  Lab Location :
                 <select name="example-location-select" id="example-location-select">
-                {labLocations.map(location => (
-                      <option value={location.uuid}>{location.name}</option>
-                  ))}
+                  {labLocations.map(location => (
+                    <option value={location.uuid}>{location.name}</option>
+                ))}
                 </select>       
               </div>
             </div>           
@@ -255,7 +256,7 @@ export const mapStateToProps = ({
   createOrderReducer,
   labOrderableReducer: { orderables },
   getLabOrderablesReducer: { getLabOrderables },
-  fetchLabLocationReducer: {labLocations} ,
+  fetchLabLocationReducer: { labLocations },
   openmrs: { session },
 }) => ({
   draftLabOrders: orders,
@@ -270,7 +271,7 @@ export const mapStateToProps = ({
   patient,
   orderables,
   getLabOrderables,
-  labLocations ,
+  labLocations,
   sessionReducer: session,
 });
 
