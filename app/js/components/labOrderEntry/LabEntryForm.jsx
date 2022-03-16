@@ -16,6 +16,7 @@ import '../../../css/grid.scss';
 import './styles.scss';
 import fetchLabOrders from '../../actions/labOrders/fetchLabOrders';
 import fetchLabConcepts from '../../actions/labOrders/labConceptsAction';
+import fetchLabLocations from '../../actions/labOrders/fetchLabLocations';
 import { setSelectedOrder } from '../../actions/orderAction';
 import { getConceptShortName } from '../../utils/helpers';
 import { CONCEPT_REP } from '../../utils/constants';
@@ -38,7 +39,8 @@ export class LabEntryForm extends PureComponent {
     conceptsAsPanels: PropTypes.array,
     standAloneTests: PropTypes.array,
     orderables: PropTypes.arrayOf(PropTypes.object).isRequired,
-    getLabOrderables: PropTypes.string.isRequired,
+    getLabOrderables: PropTypes.string.isRequired ,
+    labLocations: PropTypes.arrayOf(PropTypes.object).isRequired
   };
 
   static defaultProps = {
@@ -51,6 +53,11 @@ export class LabEntryForm extends PureComponent {
     },
     conceptsAsPanels: [],
     standAloneTests: [],
+    labLocations :[
+      {
+        uuid: '',
+        name: '',
+      }]
   };
 
   state = {
@@ -63,6 +70,7 @@ export class LabEntryForm extends PureComponent {
   componentDidMount() {
     if (this.state.categoryUUID) {
       this.props.dispatch(fetchLabConcepts(`${this.state.categoryUUID}?v=${CONCEPT_REP}`));
+      this.props.dispatch(fetchLabLocations());
     }
   }
 
@@ -100,7 +108,8 @@ export class LabEntryForm extends PureComponent {
     }
     if (this.state.categoryUUID !== prevState.categoryUUID) {
       this.props.dispatch(fetchLabConcepts(`${this.state.categoryUUID}?v=${CONCEPT_REP}`));
-    }
+      this.props.dispatch(fetchLabLocations());
+    }  
   }
 
   handleTestSelection = (item, type) => {
@@ -149,6 +158,7 @@ export class LabEntryForm extends PureComponent {
     const {
       orderables,
       getLabOrderables,
+      labLocations ,
     } = this.props;
     return (
       <React.Fragment>
@@ -162,6 +172,16 @@ export class LabEntryForm extends PureComponent {
               />
             </h5>
             <br />
+            <div className="row">
+              <div className="col-12">
+                 Lab Location :
+                <select name="example-location-select" id="example-location-select">
+                {labLocations.map(location => (
+                      <option value={location.uuid}>{location.name}</option>
+                  ))}
+                </select>       
+              </div>
+            </div>           
             <div className="row">
               <div className="col-12 col-sm-4 col-md-5 lab-category">
                 <ul>
@@ -235,6 +255,7 @@ export const mapStateToProps = ({
   createOrderReducer,
   labOrderableReducer: { orderables },
   getLabOrderablesReducer: { getLabOrderables },
+  fetchLabLocationReducer: {labLocations} ,
   openmrs: { session },
 }) => ({
   draftLabOrders: orders,
@@ -249,6 +270,7 @@ export const mapStateToProps = ({
   patient,
   orderables,
   getLabOrderables,
+  labLocations ,
   sessionReducer: session,
 });
 

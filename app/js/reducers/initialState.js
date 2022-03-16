@@ -126,4 +126,18 @@ export default {
     selectedOrder: {},
     activity: '',
   },
+  getLabLocations: {
+    labLocations: [
+        {
+          uuid: '',
+          name: '',
+        },
+      ],
+    errorMessage: '',
+    status: {
+      fetched: false,
+      error: false,
+      loading: false,
+    },
+  },
 };
